@@ -160,11 +160,12 @@ class vkMusicDownloader():
 			# загружаем музыку из альбомов
 			os.chdir('../..')
 			albums = self.vk_audio.get_albums(owner_id=self.user_id)
+			files = len(albums)
 			print('{} albums will be downloaded'.format(len(albums)))
 			for i in albums:
 				index = 1
 				audio = self.vk_audio.get(owner_id=self.user_id, album_id=i['id'])
-
+				files = files + len(audio)
 				print('{} audio will be downloaded from album {}.'.format(len(audio), i['title']))
 
 				album_path = '{}/{}'.format(music_path, i['title'])
@@ -179,7 +180,7 @@ class vkMusicDownloader():
 				os.chdir('../../..')
 
 			time_finish = time()
-			print(str(len(audio)) + ' audio downloaded in: ' + str(round(time_finish - time_start)) + ' сек.')
+			print(str(files) + ' audio downloaded in: ' + str(round(time_finish - time_start)) + ' сек.')
 
 		except KeyboardInterrupt:
 			print('Program terminated')
