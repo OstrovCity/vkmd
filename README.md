@@ -33,6 +33,7 @@ Getting list, please wait...
 00001 Ketsa - Good Vibe.mp3 - already exists
 00002 Derek Clegg - Rescue Me.mp3 - download completted
 ...
+```
 
 ## При вызове без параметров:
     - если нет сохраненных данных для входа, они запрашиваются
