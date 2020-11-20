@@ -1,5 +1,5 @@
 # vkmd
-VK Music Downloader
+## VK Music Downloader
 Скрипт python3 для скачивания Вашей и не Вашей музыки из вконтакта
 
 ## Как использовать
