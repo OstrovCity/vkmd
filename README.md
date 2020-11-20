@@ -24,7 +24,7 @@ Enter profile ID
 ```
  Узнать [id по имени](http://regvk.com/id/)
 
-Если все было сделано успешно, то Вы увидите примерно следующее:
+Если все сделано правильно, Вы увидите следующее:
 ```bash
 Authorization successfull
 Getting list, please wait...
