@@ -36,6 +36,10 @@ Enter profile ID
 Если все сделано правильно, Вы увидите следующее:
 ```bash
 Authorization successfull
+user    <user>
+pass    <password>
+user_id <user_id>
+out_dir <out_dir_name>
 Getting list, please wait...
 113 audio will be downloaded
 00001 Ketsa - Good Vibe.mp3 - already exists
