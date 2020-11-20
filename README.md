@@ -1,10 +1,17 @@
 # vkmd
 Скрипт python3 для скачивания музыки из вконтакта
 
+## Как скачать
+git clone https://github.com/OstrovCity/vkmd.py
+
 ## Как использовать
 Перед первым запуском:
 ```bash
 pip3 install -r requirements.txt
+chmod a+x ./src/vkmd.py
+```
+Запуск:
+```bash
 ./vkmd.py
 ```
 При первом запуске (или без параметров) скрипт попросит Вас авторизоваться - ввести логин
