@@ -23,7 +23,7 @@ Enter password
 Enter profile ID
 > 
 ```
-[Узнать id по имени](http://regvk.com/id/)
+ Узнать [id по имени](http://regvk.com/id/)
 
 Если все было сделано успешно, то Вы увидите примерно следующее:
 ```bash
