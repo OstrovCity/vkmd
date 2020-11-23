@@ -95,7 +95,7 @@ class vkMusicDownloader():
 			self.vk_audio = audio.VkAudio(vk_session)
 
 		except KeyboardInterrupt:
-			print('Program terminated')
+			sys.exit(2)
 
 	def getaudio(self, audio):
 		index = 1
@@ -183,7 +183,7 @@ class vkMusicDownloader():
 			print(str(files) + ' audio downloaded in: ' + str(round(time_finish - time_start)) + ' сек.')
 
 		except KeyboardInterrupt:
-			print('Program terminated')
+			sys.exit(2)
 
 if __name__ == '__main__':
 	vkMD = vkMusicDownloader()
