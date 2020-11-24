@@ -104,10 +104,10 @@ class vkMusicDownloader():
 			fileM = '{} - {}.mp3'.format(i['artist'], i['title'])
 			fileM = re.sub('/', '_', fileM)
 			try:
+				print('{:05} {}'.format(index, fileM), end = '', flush=True)
 				if os.path.isfile(fileM):
-					print('{:05} {} - already exists'.format(index, fileM))
+					print(' - already exists')
 				else:
-					print('{:05} {}'.format(index, fileM), end = '', flush=True)
 					r = requests.get(audio[index-1]['url'])
 					if r.status_code == self.REQUEST_STATUS_CODE:
 						with open(fileM, 'wb') as output_file:
@@ -115,7 +115,7 @@ class vkMusicDownloader():
 							print(' - download complette')
 			except OSError:
 				if not os.path.isfile(fileM):
-					print('{} Download failed: {}'.format(index, fileM))
+					print(' - download failed')
 
 			index += 1
 
