@@ -157,7 +157,7 @@ class vkMusicDownloader():
 			print('{} audio will be downloaded'.format(len(audio)))
 			files = len(audio)
 			self.getaudio(audio) # загружаем музыку
-			
+
 			# загружаем музыку из альбомов
 			os.chdir('../..')
 			albums = self.vk_audio.get_albums(owner_id=self.user_id)
