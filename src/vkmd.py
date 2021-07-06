@@ -24,7 +24,7 @@ class vkMusicDownloader():
 	new_auth = False
 
 	def parse_cl(self, argv):
-		help_str = sys.argv[0] + ' -u <login> -p <password> -i <user_id> -d <output_directory>'
+		help_str = sys.argv[0] + ' -a -u <login> -p <password> -i <user_id> -d <output_directory>'
 		try:
 			opts, args = getopt.getopt(argv, 'hau:p:i:d:', ['cl_user=', 'cl_pass=', 'cl_uid=', 'cl_dir='])
 		except getopt.GetOptError:
