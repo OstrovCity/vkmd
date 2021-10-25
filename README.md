@@ -3,7 +3,7 @@
 
 ## Как скачать
 ```bash
-git clone https://github.com/OstrovCity/vkmd.py
+git clone https://github.com/OstrovCity/vkmd.git
 ```
 
 ## Как использовать
