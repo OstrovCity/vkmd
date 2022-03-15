@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
 
+import re
 import os
 import sys
 import getopt
@@ -9,12 +10,11 @@ import requests
 from time import time
 import vk_api
 from vk_api import audio
-import re
 
 class vkMusicDownloader():
 
 	CONFIG_DIR = 'config'
-	USERDATA_FILE = '{}/UserData.datab'.format(CONFIG_DIR) #файл хранит логин, пароль и id
+	USERDATA_FILE = '{}/UserData.datab'.format(CONFIG_DIR) # файл хранит логин, пароль и id
 	REQUEST_STATUS_CODE = 200
 
 	login = ''
@@ -101,20 +101,24 @@ class vkMusicDownloader():
 		index = 1
 
 		for i in audio:
-			fileM = '{} - {}.mp3'.format(i['artist'], i['title'])
-			fileM = re.sub('/', '_', fileM)
+			fileMP3 = '{} - {}.mp3'.format(i['artist'], i['title'])
+			fileMP3 = re.sub('/', '_', fileMP3)
 			try:
-				print('{:05} {}'.format(index, fileM), end = '', flush=True)
-				if os.path.isfile(fileM):
+				print('{:05} {}'.format(index, fileMP3), end = '', flush=True)
+				if os.path.isfile(fileMP3):
 					print(' - already exists')
 				else:
-					r = requests.get(audio[index-1]['url'])
-					if r.status_code == self.REQUEST_STATUS_CODE:
-						with open(fileM, 'wb') as output_file:
-							output_file.write(r.content)
-							print(' - download complette')
+# старая реализация
+#					r = requests.get(audio[index-1]['url'])
+#					if r.status_code == self.REQUEST_STATUS_CODE:
+#						with open(fileMP3, 'wb') as output_file:
+#							output_file.write(r.content)
+#							print(' - download complette')
+
+# новая реализация
+		                        os.system("ffmpeg -i {} -c copy -map a \"{}\"".format(audio[index-1]['url'], fileMP3))
 			except OSError:
-				if not os.path.isfile(fileM):
+				if not os.path.isfile(fileMP3):
 					print(' - download failed')
 
 			index += 1
@@ -151,7 +155,7 @@ class vkMusicDownloader():
 			time_start = time() # сохраняем время начала скачивания
 			print('Getting file list, please wait...')
 
-			os.chdir(music_path) #меняем текущую директорию
+			os.chdir(music_path) # меняем текущую директорию
 
 			audio = self.vk_audio.get(owner_id=self.user_id)
 			print('{} audio will be downloaded'.format(len(audio)))
@@ -173,7 +177,7 @@ class vkMusicDownloader():
 				if not os.path.exists(album_path):
 					os.makedirs(album_path)
 
-				os.chdir(album_path) #меняем текущую директорию
+				os.chdir(album_path) # меняем текущую директорию
 
 				self.getaudio(audio) # загружаем музыку
 
