@@ -9,6 +9,7 @@ git clone https://github.com/OstrovCity/vkmd.git
 ## Как использовать
 Перед первым запуском:
 ```bash
+apt-get install ffmpeg
 cd vkmd
 pip3 install -r requirements.txt
 chmod a+x ./src/vkmd.py
