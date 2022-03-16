@@ -103,6 +103,7 @@ class vkMusicDownloader():
 		for i in audio:
 			fileMP3 = '{} - {}.mp3'.format(i['artist'], i['title'])
 			fileMP3 = re.sub('/', '_', fileMP3)
+			fileMP3 = re.sub('"', "'", fileMP3)
 			try:
 				print('{:05} {}'.format(index, fileMP3), end = '', flush=True)
 				if os.path.isfile(fileMP3):
@@ -116,10 +117,13 @@ class vkMusicDownloader():
 #							print(' - download complette')
 
 # новая реализация
-		                        os.system("ffmpeg -i {} -c copy -map a \"{}\"".format(audio[index-1]['url'], fileMP3))
+					cmd = 'ffmpeg -v 16 -i {} -c copy -map a "{}"'.format(audio[index-1]['url'], fileMP3)
+					os.system(cmd)
+					if os.path.getsize(fileMP3) > 0:
+						print(' - download complette')
+                    
 			except OSError:
-				if not os.path.isfile(fileMP3):
-					print(' - download failed')
+				print(' - download failed')
 
 			index += 1
 
@@ -145,9 +149,9 @@ class vkMusicDownloader():
 			info = self.vk.users.get(user_id=self.user_id)
 
 			if (self.out_dir == ''):
-				music_path = '{}/{} {}'.format('music/', info[0]['first_name'], info[0]['last_name'])
-			else:
-				music_path = '{}/{} {}'.format(self.out_dir, info[0]['first_name'], info[0]['last_name'])
+				self.out_dir = 'music'
+
+			music_path = '{}/{} {}'.format(self.out_dir, info[0]['first_name'], info[0]['last_name'])
 
 			if not os.path.exists(music_path):
 				os.makedirs(music_path)
