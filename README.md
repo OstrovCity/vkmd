@@ -44,8 +44,12 @@ user_id <user_id>
 out_dir <out_dir_name>
 Getting list, please wait...
 113 audio will be downloaded
-00001 Ketsa - Good Vibe.mp3 - already exists
-00002 Derek Clegg - Rescue Me.mp3 - download completted
+0000001 Ketsa - Good Vibe.mp3 - already exists
+0000002 Derek Clegg - Rescue Me.mp3 - download completted
+...
+3587662 Anton Vlasov - Trailer Sport Stylish.mp3 - download completted
+...
+8839708 AlexGrohl - Electronic Rock (King Around Here).mp3 - download completted
 ...
 ```
 
