@@ -103,7 +103,6 @@ class vkMusicDownloader():
 		for i in audio:
 			fileMP3 = '{} - {}.mp3'.format(i['artist'], i['title'])
 			fileMP3 = re.sub('/', '_', fileMP3)
-			fileMP3 = re.sub('"', "'", fileMP3)
 			try:
 				print('{:05} {}'.format(index, fileMP3), end = '', flush=True)
 				if os.path.isfile(fileMP3):
@@ -188,7 +187,7 @@ class vkMusicDownloader():
 				os.chdir('../../..')
 
 			time_finish = time()
-			print(str(files) + ' audio downloaded in: ' + str(round(time_finish - time_start)) + ' сек.')
+			print(str(files) + ' audio downloaded in ' + str(round(time_finish - time_start)) + ' seconds')
 
 		except KeyboardInterrupt:
 			sys.exit(2)
