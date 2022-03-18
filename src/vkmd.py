@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#-*- coding: utf-8 -*-
+#coding: utf8
 
 import re
 import os
@@ -110,7 +110,7 @@ class vkMusicDownloader():
 					print(' - already exists')
 				else:
 # старая реализация
-#					r = requests.get(audio[index-1]['url'])
+#					r = requests.get(fileURL)
 #					if r.status_code == self.REQUEST_STATUS_CODE:
 #						with open(fileMP3, 'wb') as output_file:
 #							output_file.write(r.content)
