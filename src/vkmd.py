@@ -103,6 +103,7 @@ class vkMusicDownloader():
 		for i in audio:
 			fileMP3 = '{} - {}.mp3'.format(i['artist'], i['title'])
 			fileMP3 = re.sub('/', '_', fileMP3)
+			fileURL = audio[index-1]['url']
 			try:
 				print('{:05} {}'.format(index, fileMP3), end = '', flush=True)
 				if os.path.isfile(fileMP3):
@@ -116,7 +117,7 @@ class vkMusicDownloader():
 #							print(' - download complette')
 
 # новая реализация
-					cmd = 'ffmpeg -v 16 -i {} -c copy -map a "{}"'.format(audio[index-1]['url'], fileMP3)
+					cmd = 'ffmpeg -http_persistent false -v 16 -i {} -c copy -map a "{}"'.format(fileURL, fileMP3)
 					os.system(cmd)
 					if os.path.getsize(fileMP3) > 0:
 						print(' - download complette')
@@ -170,7 +171,6 @@ class vkMusicDownloader():
 			albums = self.vk_audio.get_albums(owner_id=self.user_id)
 			print('{} albums will be downloaded'.format(len(albums)))
 			for i in albums:
-				index = 1
 				audio = self.vk_audio.get(owner_id=self.user_id, album_id=i['id'])
 				files = files + len(audio)
 				print('{} audio will be downloaded from album {}.'.format(len(audio), i['title']))
