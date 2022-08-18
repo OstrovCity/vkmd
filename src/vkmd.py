@@ -4,11 +4,14 @@
 import re
 import os
 import sys
+import pymp
 import getopt
 import pickle
-import requests
-from time import time
 import vk_api
+import ffmpeg
+import multiprocessing
+
+from time import time
 from vk_api import audio
 
 class vkMusicDownloader():
@@ -47,17 +50,20 @@ class vkMusicDownloader():
 			else:
 				sys.exit(2)
 
+
 	def auth_handler(self, remember_device=None):
 		code = input('Enter confirmation code\n> ')
 		if (remember_device == None):
 			remember_device = True
 		return code, remember_device
 
+
 	def saveUserData(self):
 		SaveData = [self.login, self.password, self.user_id]
 
 		with open(self.USERDATA_FILE, 'wb') as dataFile:
 			pickle.dump(SaveData, dataFile)
+
 
 	def auth(self, new):
 		try:
@@ -97,35 +103,48 @@ class vkMusicDownloader():
 		except KeyboardInterrupt:
 			sys.exit(2)
 
+
+	def getmp3(self, index, audio):
+		fileMP3 = '{} - {}.mp3'.format(audio['artist'], audio['title'])
+		fileMP3 = re.sub('/', '_', fileMP3)
+		fileURL = audio['url']
+		try:
+			print('{:05} {}'.format(index+1, fileMP3), end = '', flush=True)
+			if os.path.isfile(fileMP3):
+				print(' - already exists')
+			else:
+# first implementation
+#				r = requests.get(fileURL)
+#				if r.status_code == self.REQUEST_STATUS_CODE:
+#					with open(fileMP3, 'wb') as output_file:
+#						output_file.write(r.content)
+
+# internal ffmpeg implementation (gappy files)
+#				stream = ffmpeg.input(fileURL)
+#				stream = ffmpeg.output(stream, fileMP3)
+#				ffmpeg.run(stream, quiet=True)
+##				ffmpeg.run_async(stream, pipe_stdin=True, quiet=True)
+
+# external call ffmpeg implementation
+				cmd = 'ffmpeg -http_persistent false -v 16 -i {} -c copy -map a "{}"'.format(fileURL, fileMP3)
+				os.system(cmd)
+
+				if os.path.getsize(fileMP3) > 0:
+					print(' - download complette')
+		except OSError:
+			print(' - download failed')
+
+
 	def getaudio(self, audio):
-		index = 1
+# simple implementation
+		for index in range(len(audio)):
 
-		for i in audio:
-			fileMP3 = '{} - {}.mp3'.format(i['artist'], i['title'])
-			fileMP3 = re.sub('/', '_', fileMP3)
-			fileURL = audio[index-1]['url']
-			try:
-				print('{:05} {}'.format(index, fileMP3), end = '', flush=True)
-				if os.path.isfile(fileMP3):
-					print(' - already exists')
-				else:
-# старая реализация
-#					r = requests.get(fileURL)
-#					if r.status_code == self.REQUEST_STATUS_CODE:
-#						with open(fileMP3, 'wb') as output_file:
-#							output_file.write(r.content)
-#							print(' - download complette')
+# multiprocessor implementation
+#		with pymp.Parallel(multiprocessing.cpu_count()) as pmp:
+#			for index in pmp.range(0, len(audio)):
 
-# новая реализация
-					cmd = 'ffmpeg -http_persistent false -v 16 -i {} -c copy -map a "{}"'.format(fileURL, fileMP3)
-					os.system(cmd)
-					if os.path.getsize(fileMP3) > 0:
-						print(' - download complette')
-                    
-			except OSError:
-				print(' - download failed')
+				self.getmp3(index, audio[index])
 
-			index += 1
 
 	def main(self, auth_dialog = 'yes'):
 
@@ -191,6 +210,7 @@ class vkMusicDownloader():
 
 		except KeyboardInterrupt:
 			sys.exit(2)
+
 
 if __name__ == '__main__':
 	vkMD = vkMusicDownloader()
