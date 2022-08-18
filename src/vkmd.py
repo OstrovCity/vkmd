@@ -8,8 +8,8 @@ import pymp
 import getopt
 import pickle
 import vk_api
-import ffmpeg
-import multiprocessing
+#import ffmpeg
+#import multiprocessing
 
 from time import time
 from vk_api import audio
