@@ -4,7 +4,7 @@
 import re
 import os
 import sys
-import pymp
+#import pymp
 import getopt
 import pickle
 import vk_api
