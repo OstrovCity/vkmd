@@ -13,8 +13,6 @@ import vk_api
 from vk_api import audio
 from time import time
 
-app_token = 'vk1.a.MZDQYMVQR1Fab3jVG18MWRD___nxXohgQ5Q31JeZXk-STyAvBJ16FtBTiUtxgs_pJEOqGGWFCloN1044DolE3noxhIzYfec8hCjT9YtYloLph5rwiSCs4fbLtAEnX3IQEcMbDD_m94wcASfaLUev28yj7fW13WKANFieFjLfIxV9NtS3XFxsH24e-umchqkh'
-
 class vkMusicDownloader():
 
 	CONFIG_DIR = 'config'
