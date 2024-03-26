@@ -10,8 +10,12 @@ import pickle
 import requests
 import multiprocessing
 import vk_api
+import datetime
 from vk_api import audio
 from time import time
+from datetime import timedelta
+
+#app_token = 'vk1.a.MZDQYMVQR1Fab3jVG18MWRD___nxXohgQ5Q31JeZXk-STyAvBJ16FtBTiUtxgs_pJEOqGGWFCloN1044DolE3noxhIzYfec8hCjT9YtYloLph5rwiSCs4fbLtAEnX3IQEcMbDD_m94wcASfaLUev28yj7fW13WKANFieFjLfIxV9NtS3XFxsH24e-umchqkh'
 
 class vkMusicDownloader():
 
@@ -190,7 +194,8 @@ class vkMusicDownloader():
 				os.chdir('../../..')
 
 			time_finish = time()
-			print(str(files) + ' audio downloaded in ' + str(round(time_finish - time_start)) + ' seconds')
+			time_download = round(time_finish - time_start)
+			print(str(files) + ' audio downloaded in ' + str(time_download) + ' seconds (' + str(timedelta(seconds=time_download)) + ')')
 
 		except KeyboardInterrupt:
 			sys.exit(2)
