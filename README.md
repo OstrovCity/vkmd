@@ -12,8 +12,8 @@ git clone https://github.com/OstrovCity/vkmd.git
 ```bash
 sudo apt install ffmpeg
 sudo apt install python3-pip
-pip3 install -r requirements.txt
 cd vkmd
+pip3 install -r requirements.txt
 chmod a+x ./src/vkmd.py
 ```
 Запуск:
