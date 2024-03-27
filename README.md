@@ -30,7 +30,7 @@ Enter login
 Enter password
 > 
 ```
-и id пользователя (узнать [id по имени](http://regvk.com/id/)) /группы музыку которого мы хотим скачать:
+и id пользователя (узнать [id по имени](http://regvk.com/id/))/группы музыку которого мы хотим скачать:
 ```bash
 Enter profile ID
 > 
