@@ -10,7 +10,6 @@ import pickle
 import requests
 import multiprocessing
 import vk_api
-import datetime
 from vk_api import audio
 from time import time
 from datetime import timedelta
@@ -90,7 +89,8 @@ class vkMusicDownloader():
 				pickle.dump(SaveData, dataFile)
 
 			try:
-				vk_session = vk_api.VkApi(login=self.login, password=self.password, app_id=2685278)
+#				vk_session = vk_api.VkApi(login=self.login, password=self.password, app_id=2685278) # Kate Mobile
+				vk_session = vk_api.VkApi(login=self.login, password=self.password, app_id=6287487) # ВКонтакте API [client_secret='QbYic1K3lEV5kTGiqlq2']
 				vk_session.auth()
 			except Exception as e:
 		                print('[error]:', e)
