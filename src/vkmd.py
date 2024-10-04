@@ -7,7 +7,6 @@ import sys
 import pymp
 import getopt
 import pickle
-import requests
 import multiprocessing
 import vk_api
 from vk_api import audio
@@ -25,6 +24,9 @@ class vkMusicDownloader():
 	user_id = ''
 	out_dir = ''
 	new_auth = False
+
+	def __init__(self):
+		self.vk = None
 
 	def parse_cl(self, argv):
 		help_str = sys.argv[0] + ' -a -u <login> -p <password> -i <user_id> -d <output_directory>'
@@ -87,12 +89,11 @@ class vkMusicDownloader():
 				pickle.dump(SaveData, dataFile)
 
 			try:
-#				vk_session = vk_api.VkApi(login=self.login, password=self.password, app_id=2685278) # Kate Mobile
-				vk_session = vk_api.VkApi(login=self.login, password=self.password, app_id=6287487) # ВКонтакте API [client_secret='QbYic1K3lEV5kTGiqlq2']
+				vk_session = vk_api.VkApi(login=self.login, password=self.password, app_id=6287487, client_secret="QbYic1K3lEV5kTGiqlq2")
 				vk_session.auth()
 			except Exception as e:
-		                print('[error]:', e)
-		                return
+				print('[error]:', e)
+				return
 
 			print('Authorization successfull')
 
